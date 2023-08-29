@@ -15,7 +15,7 @@ const Insperations = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3500);
+        }, 2500);
 
         return () => {
             clearInterval(interval);
@@ -23,7 +23,7 @@ const Insperations = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 justify-center items-center pt-10 pb-20">
+        <div className="grid grid-cols-1 justify-center items-center pt-0 pb-5">
             <div className="book">
                 <div className="page">
                     <img src={images[currentIndex]} alt={`Page`} />

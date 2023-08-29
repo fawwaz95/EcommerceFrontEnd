@@ -28,7 +28,6 @@ export default function Header (){
         setSearchField(false);
     }
 
-    
     const getTotalQuantity = () => {
         let total = 0
             cart.forEach(item => {
@@ -74,30 +73,30 @@ export default function Header (){
     }, [currentCartQuantity]); 
 
         return(
-            <div className="relative">
+            <div className="relative border-b">
                 <header className="bg-none flex justify-between m-5">
-                        <div onClick={collapseOrShowNav}>
-                            <a href="#">
-                                <svg id="hamburger" xmlns="http://www.w3.org/2000/svg"  className="w-10 h-10" fill="none" viewBox="0 0 24 24" strokeWidth="1." stroke="black">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
-                            </a>
+                        <div className="z-50" onClick={collapseOrShowNav}>
+                            {!navBar &&
+                                <a href="#">
+                                    <svg id="hamburger" xmlns="http://www.w3.org/2000/svg"  className="w-10 h-10" fill="none" viewBox="0 0 24 24" strokeWidth="1." stroke="black">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>
+                                </a>
+                            }
                         </div>
-                            <div className="flex items-center justify-center">
-                                <h1 className="text-sm sm:text-3xl font-bold uppercase text-black vintageFont">
+                            <div className="absolute left-0 right-0 m-auto text-center block">
+                                <h1 className="text-lg font-bold uppercase text-black vintageFont">
                                     <Link to="/Home"> Paix & Amour </Link>
                                 </h1>
                             </div>
-                    <div className="flex flex-wrap space-x-3">
-                        <div id="cart" className={isCartQuantityChanged ? 'animate-bounce' : ''}>
-                            <a href="#">
-                                <Link to="/Cart">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg>      
-                                    <p className="absolute -mt-10 ml-2 text-bold text-md">{getTotalQuantity() || ""}</p>
-                                </Link>
-                            </a>
-                        </div>
-                        <div id="searchButton" className="Old Standard italic font-bold text-sm sm:text-md uppercase text-black">
+                    <div className="flex flex-wrap space-x-3 z-50">
+                        <Link to="/Cart">
+                            <div id="cart" className={isCartQuantityChanged ? 'animate-bounce' : ''}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16"> <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/> </svg>      
+                                <p className="absolute -mt-10 ml-2 text-bold text-md">{getTotalQuantity() || ""}</p>
+                            </div>
+                        </Link>
+                        <div id="searchButton" className="vintageFont font-bold text-sm sm:text-md uppercase text-black">
                                 <a className="text-xs" href="#" onClick={collapseOrShowSearchField}>Search</a>
                         </div>
                     </div>
@@ -117,7 +116,9 @@ export default function Header (){
                                 <li>
                                     <Link to="/Shop">Shop</Link>
                                 </li>
-                                <li><a href="#">LookBook</a></li>
+                                <li>
+                                    <Link to="/LookBook">LookBook</Link>
+                                </li>
                                 <li>
                                     <Link to="/Insperations">Insperations</Link>
                                 </li>
