@@ -23,7 +23,7 @@ const Insperations = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 justify-center items-center pt-0 pb-5">
+        <div className="grid grid-cols-1 justify-center items-center pt-0 pb-5 scrollable">
             <div className="book">
                 <div className="page">
                     <img src={images[currentIndex]} alt={`Page`} />

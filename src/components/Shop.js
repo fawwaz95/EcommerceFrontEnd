@@ -24,7 +24,7 @@ export default function Shop(){
     }, []);
 
         return(
-                 <div className="bg-white h-full w-full fixed text-black">
+                 <div className="bg-white h-full w-full text-black">
                     <div className="scrollable">
                             <div id="productList" className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-10 text-sm align-content-start">
                             {!isLoading ?

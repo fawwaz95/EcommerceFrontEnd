@@ -33,7 +33,9 @@ a:hover{
 }
 
 .scrollable{
+  position: fixed;
   height: calc(100% - 40px); /* Adjust the value as needed to accommodate the header */
+  width: 100%;
   overflow: scroll;
 }
 
