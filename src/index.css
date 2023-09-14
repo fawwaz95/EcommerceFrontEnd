@@ -240,36 +240,81 @@ a:hover{
 }
 
 
-.cart-containerMobile{
+/*=======================================*/
+/*===========Mobile Cart Grid============*/
+/*=======================================*/
+
+.grid-cart-container-mobile {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* Four columns */
+  grid-template-rows: auto auto; /* Two rows */
+  gap: 10px; /* Spacing between grid items */
+  font-size:12px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  margin: 10px;
-  font-size:12px;
+  font-family: Financier Display,serif;
 }
 
-.prodImgContainerMobile {
-  display: flex;
-  align-items:flex-start;
-  padding: 10px;
+/* First Row */
+.image-mobile {
+  grid-column: 1 / span 1; /* Span one column */
+  grid-row: 1 / span 2;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 
-.prodDescContainerMobile {
+/* Second Row */
+.description-mobile {
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  padding: 10px;
-}
-
-.prodPriceQntyContainerMobile {
-  display: flex;
-  flex-direction: column;
+  justify-content: left;
   align-items: center;
-  justify-content: center;
+  grid-column: 2; /* First column */
+  grid-row: 1; /* First row */
 }
+
+.remove-button-mobile {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  grid-column: 2; /* Second column */
+  grid-row: 2;   /* Second row */
+}
+
+.price-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 4; /* Fourth column */
+  grid-row: 1; /* First row */
+}
+
+/* Fourth Row */
+.quantity-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 4; /* Fourth column */
+  grid-row: 2; /* Two column */
+}
+
+/*=======================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .prodPriceItem {
   display: flex;
@@ -279,11 +324,6 @@ a:hover{
 .prodQntyItem {
   display: flex;
   flex-wrap: wrap;
-}
-
-.removeBtnMobile{
-  display: flex;
-  align-items: left;
 }
 
 .slide-animation {

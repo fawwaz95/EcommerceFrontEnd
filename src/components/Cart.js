@@ -79,31 +79,23 @@ export default function Cart() {
                     <div className="cart">
                         <div className="header">Cart</div>
                         <div className="availableNowTitle">AVAILABLE NOW</div>
-                        <div className="cart-containerMobile">
                             {cart?.map((item) => (
                                 <React.Fragment key={item._id}>
-                                    <div className="prodImgContainerMobile">
-                                        <img className="img" src={item.prodImg} alt="Image" />
-                                    </div>
-                                    <div className="prodDescContainerMobile">
-                                        <div>{item.prodDesc}</div>
-                                        <div className="removeBtnMobile">
-                                            <button onClick={() => dispatch(removeItemFromCart(item.prodId))}>
+                                    <div className="grid-cart-container-mobile">
+                                        <img className="image-mobile" src={item.src} alt="Image" />
+                                        <div className="description-mobile">{item.item}</div>
+                                        <button className="remove-button-mobile" onClick={() => dispatch(removeItemFromCart(item._id))}>
                                                 Remove
-                                            </button>
+                                        </button>
+                                        <div className="price-mobile">$CAD {getTotal(item._id)}</div>
+                                        <div className="quantity-mobile">
+                                            <button onClick={() => dispatch(decrementQuantity(item._id))}>-</button>
+                                            <p>{item.quantity}</p>
+                                            <button onClick={() => dispatch(incrementQuantity(item._id))}>+</button>
                                         </div>
                                     </div>
-                                    <div className="prodPriceQntyContainerMobile">
-                                        <div className="prodPriceItem">$CAD {item.prodPrice}</div>
-                                        <div className="prodQntyItem">
-                                            <button onClick={() => dispatch(decrementQuantity(item.prodId))}>-</button>
-                                            <p>{item.quantity}</p>
-                                            <button onClick={() => dispatch(incrementQuantity(item.prodId))}>+</button>
-                                        </div>
-                                    </div>               
                                 </React.Fragment>
                             ))}
-                        </div>
                     </div>
                 </div>
             }

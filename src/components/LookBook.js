@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-const imageContext = require.context("../images/lookbook", false, /\.(jpg|jpeg|png)$/);
+const imageContext = require.context("../../public/images/lookbook", false, /\.(jpg|jpeg|png)$/);
 const imagePaths = imageContext.keys().map(imageContext);
 const dateOpts = { weekday: 'long', month: 'long', day: 'numeric' };
 const todayDate = new Date().toLocaleDateString("en-US", dateOpts);
@@ -9,7 +9,6 @@ const LookBook = () => {
     const [pathofImg, setPathofImg] = useState("");
 
     useEffect(() => {
-        console.log("Rerendering.......");
     },[openImage, pathofImg])
 
     const resizeImage = (imagePath) => {
@@ -24,30 +23,20 @@ const LookBook = () => {
     }
 
     const changeImg = (id) => {
-        const numberOfImgs = imagePaths.length + 1;
+        const numberOfImgs = imagePaths.length;
         const getImg = document.getElementById("lookbookImg");
         const formatImg = getImg.src.split("http://localhost:3000")[1];
         const indexOfImg = imagePaths.indexOf(formatImg);
-
-            if(indexOfImg === numberOfImgs && id === "rightArrow"){ //Check if current image index isnt the last image in the array
-                console.log("Clicked right arrow... and we are on the last image");
-                setPathofImg(imagePaths[0]);
-            }else if (indexOfImg === 0 && id === "leftArrow"){ //Check if we are at the first image and we clicked the left arrow
-                console.log("Clicked left arrow... and we are on the first image");
-                setPathofImg(imagePaths[numberOfImgs-1]);
-            }else if (indexOfImg !== numberOfImgs && id === "rightArrow"){
-                console.log("Clicked right arrow... but we have more images");
-                setPathofImg(imagePaths[indexOfImg + 1]);
-            }else if (indexOfImg !== numberOfImgs && id === "leftArrow"){
-                console.log("Clicked left arrow... but we have more images");
-                setPathofImg(imagePaths[indexOfImg - 1]);
-            }
-        
-        console.log("indexOfImg");
-        console.log(indexOfImg);
-
-        console.log("number of images");
-        console.log(numberOfImgs);
+      
+        let newIndex;
+      
+        if (id === "rightArrow") {
+          newIndex = (indexOfImg + 1) % numberOfImgs; //% operator (modulo), is used to stay within the range of the array. If we exceed its range, it will wrap around the array and return 0
+        } else if (id === "leftArrow") {
+          newIndex = (indexOfImg - 1 + numberOfImgs) % numberOfImgs; //% operator (modulo), same as above but once we hit -1. It will wrap around the otherside of the array and return 20.
+        }
+      
+        setPathofImg(imagePaths[newIndex]);
     }
 
 
