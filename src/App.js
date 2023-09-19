@@ -13,6 +13,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 export default function App() {
+
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: '{{CLIENT_SECRET}}',
+  };
+
+
   return (
     <div>
       <Router>
@@ -22,12 +29,11 @@ export default function App() {
           <Route path="/LookBook" element={<LookBook />} />
           <Route path="/Insperations" element={<Insperations />} />
           <Route path="/Shop" element={<Shop />} />
-          {/*<Route path="/Product" element={<Product />} />*/}
           <Route path="/Product/:prodId" element={<Product />} />
           <Route path="/Cart" element={<Cart />} />
-
         </Routes>
       </Router>
+
     </div>
   );
 }
