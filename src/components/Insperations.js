@@ -23,18 +23,19 @@ const Insperations = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-1 justify-center items-center pt-0 pb-5 scrollable">
+        <div className="grid grid-cols-1 justify-center items-center pt-0 pb-10 scrollable">
             <div className="book">
                 <div className="page">
                     <img src={images[currentIndex]} alt={`Page`} />
-                </div>
-            </div>
-            <div>
-                <article className="vintageFont text-center text-xs pt-5">
+                    <div>
+                <article className="absolute bottom-0 left-0 right-0 vintageFont text-center text-xs pt-5 pb-10">
                     Paix & Amour does not claim ownership<br></br>
                     of any images unless otherwise stated.
                 </article>
             </div>
+                </div>
+            </div>
+
         </div>
     );
 };

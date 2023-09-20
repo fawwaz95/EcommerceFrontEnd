@@ -41,7 +41,7 @@ const LookBook = () => {
 
 
     return (
-        <div className={ "scrollable"}>
+        <div className="scrollable">
             <div className="flex justify-center text-center p-10">
                 <div>
                     <div className="text-xs"> {todayDate} </div>
@@ -61,7 +61,7 @@ const LookBook = () => {
                 }
             </div>
             : 
-            <div className="">
+            <div>
                 <div id="closeBtn">                   
                     <a href="#" className="flex justify-end pr-5" onClick={() => closeImage()}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24"  stroke="white">
@@ -69,18 +69,18 @@ const LookBook = () => {
                         </svg>
                     </a>
                 </div>
-                <div className="relative flex items-center left-0 ml-0 pl-0 ">
-                        <div id="leftArrow" className="w-1/4 flex justify-end" onClick={() => changeImg("leftArrow")}>  {/*Need to fix the alignment of my left arrow.....*/}
+                <div className="relative flex items-center h-full">
+                        <div id="leftArrow" className="w-1/4 flex justify-start ml-4" onClick={() => changeImg("leftArrow")}>  {/*Need to fix the alignment of my left arrow.....*/}
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" >
                                     <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z"/>
                                 </svg>
                             </a>
                         </div>
-                        <div id="lookbookContainer" className="flex justify-center items-center w-1/2">
-                            <img id="lookbookImg" src={pathofImg} className="h-auto sm:h-screen" alt="Lookbook image" />
+                        <div id="lookbookContainer" className="flex justify-center m-10">
+                            <img id="lookbookImg" src={pathofImg} className="sm:w-2/6" alt="Lookbook image" />
                         </div>
-                        <div id="rightArrow" className="w-1/4 flex justify-start" onClick={() => changeImg("rightArrow")}>
+                        <div id="rightArrow" className="w-1/4 flex justify-end mr-4" onClick={() => changeImg("rightArrow")}>
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                                     <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z"/>
