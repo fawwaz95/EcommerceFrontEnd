@@ -3,12 +3,15 @@ import ShopItem from './ShopItem';
 import FetchingData from './FetchingData';
 
 export default function Shop(){
+    const PORT = process.env.PORT || 3001;
+    const itemEndPoint = process.env.reactAppUrl ?  `${process.env.reactAppUrl}/ecommerce/Shop` : `http://localhost:${PORT}/ecommerce/Shop`;
     let [shopInfo, setShop] = useState();
     let [isLoading, setIsLoading] = useState(true);
 
     const fetchShop = async () => {
         try{
-            const response = await fetch('http://localhost:3001/ecommerce/Shop');
+            console.log("The env endpoint: " + process.env.reactAppUrl);
+            const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/Shop`
             const jsonData = response.ok? await response.json() : new Error('Error fetching Shop endpoint');
             setShop(jsonData);
         }catch(error){
