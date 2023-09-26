@@ -11,7 +11,7 @@ export default function Shop(){
     const fetchShop = async () => {
         try{
             console.log("SERVER_URL: " + process.env.SERVER_URL);
-            console.log("PORT: " + process.env.SERVER_URL);
+            console.log("PORT: " + process.env.PORT);
             const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/Shop`
             const jsonData = response.ok? await response.json() : new Error('Error fetching Shop endpoint');
             setShop(jsonData);
