@@ -4,13 +4,13 @@ import FetchingData from './FetchingData';
 
 export default function Shop(){
     const PORT = process.env.PORT || 3001;
-    const itemEndPoint = process.env.SERVER_URL ?  `${process.env.SERVER_URL}/ecommerce/Shop` : `http://localhost:${PORT}/ecommerce/Shop`;
+    const itemEndPoint = process.env.REACT_APP_BACKENDSERVER ?  `${process.env.SERVER_URL}/ecommerce/Shop` : `http://localhost:${PORT}/ecommerce/Shop`;
     let [shopInfo, setShop] = useState();
     let [isLoading, setIsLoading] = useState(true);
 
     const fetchShop = async () => {
         try{
-            console.log("SERVER_URL: " + process.env.SERVER_URL);
+            console.log("SERVER_URL: " + process.env.REACT_APP_BACKENDSERVER);
             console.log("PORT: " + process.env.PORT);
             const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/Shop`
             const jsonData = response.ok? await response.json() : new Error('Error fetching Shop endpoint');
