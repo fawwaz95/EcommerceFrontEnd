@@ -12,6 +12,7 @@ export default function Product () {
     const { prodId } = useParams();
 
     const fetchProdId = async () => {
+      console.log(`get the prodId param ${prodId}`);
       try {
           if (prodId) {
             setProductId(prodId);
