@@ -4,12 +4,12 @@ import { addItemToCart } from '../redux/actions/cartActions';
 import { useLocation, useParams } from 'react-router-dom';
 
 export default function Product () {
+    const { prodId } = useParams();
     const PORT = process.env.PORT || 3001;
     const productEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/ProductID/${prodId}` : `http://localhost:${PORT}/ecommerce/ProductID/${prodId}`;
     const [productInfo, setProductInfo] = useState({});
     const [productId, setProductId] = useState(null);
     const dispatch = useDispatch();
-    const { prodId } = useParams();
 
     const fetchProdId = async () => {
       console.log(`get the prodId param ${prodId}`);
