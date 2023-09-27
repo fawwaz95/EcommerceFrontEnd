@@ -4,9 +4,7 @@ import FetchingData from './FetchingData';
 
 export default function Shop(){
     const PORT = process.env.PORT || 3001;
-    const itemEndPoint = process.env.REACT_APP_BACKENDSERVER
-                        ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Shop`
-                        : `http://localhost:${PORT}/ecommerce/Shop`;
+    const itemEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Shop`: `http://localhost:${PORT}/ecommerce/Shop`;
     let [shopInfo, setShop] = useState();
     let [isLoading, setIsLoading] = useState(true);
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 
 export default function ProductSearchResults({searchResults, prodClicked}) {
+    const PORT = process.env.PORT || 3001;
+    const itemEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/item/${searchResults}` : `http://localhost:${PORT}/ecommerce/item/${searchResults}`;
     let [productInfo, setProductInfo] = useState({});
     
     const onClickProduct = (id) => {
@@ -10,7 +12,7 @@ export default function ProductSearchResults({searchResults, prodClicked}) {
 
     const fetchProduct = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/ecommerce/item/${searchResults}`);
+            const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/item/${searchResults}`
             if (response.ok) {
                 const jsonData = await response.json();
                 setProductInfo(jsonData);
