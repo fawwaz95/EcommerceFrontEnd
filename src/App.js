@@ -9,8 +9,8 @@ import Shop from './components/Shop.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { useLocation, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function App() {
 
@@ -24,8 +24,8 @@ export default function App() {
     <div>
       <Router>
         <HeaderWrapper></HeaderWrapper>
-        <Switch>
-          <Route path="/" element={<Homepage />} />
+        <Routes>
+          <Route path="" element={<Homepage />} />
           <Route path="/Home" element={<Homepage />} />
           <Route path="/LookBook" element={<LookBook />} />
           <Route path="/Insperations" element={<Insperations />} />
@@ -33,8 +33,8 @@ export default function App() {
           <Route path="/Product/:prodId" element={<Product />} />
           <Route path="/Cart" element={<Cart />} />
 
-          <Route component={<Homepage />} /> {/*For now redirect to Homepage when 404 error occures*/}
-        </Switch>
+          <Route path="*" element={<Homepage />}/> {/*redirect to homepage on 404 for now............*/}
+        </Routes>
       </Router>
 
     </div>
