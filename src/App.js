@@ -9,8 +9,8 @@ import Shop from './components/Shop.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useLocation, Switch } from 'react-router-dom';
 
 export default function App() {
 
