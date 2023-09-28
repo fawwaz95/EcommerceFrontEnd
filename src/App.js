@@ -25,6 +25,7 @@ export default function App() {
       <Router>
         <HeaderWrapper></HeaderWrapper>
         <Routes>
+          <Route path="/" component={<Homepage />} />
           <Route path="/Home" element={<Homepage />} />
           <Route path="/LookBook" element={<LookBook />} />
           <Route path="/Insperations" element={<Insperations />} />
