@@ -24,15 +24,17 @@ export default function App() {
     <div>
       <Router>
         <HeaderWrapper></HeaderWrapper>
-        <Routes>
-          <Route path="/" component={<Homepage />} />
+        <Switch>
+          <Route path="/" element={<Homepage />} />
           <Route path="/Home" element={<Homepage />} />
           <Route path="/LookBook" element={<LookBook />} />
           <Route path="/Insperations" element={<Insperations />} />
           <Route path="/Shop" element={<Shop />} />
           <Route path="/Product/:prodId" element={<Product />} />
           <Route path="/Cart" element={<Cart />} />
-        </Routes>
+
+          <Route component={<Homepage />} /> {/*For now redirect to Homepage when 404 error occures*/}
+        </Switch>
       </Router>
 
     </div>
