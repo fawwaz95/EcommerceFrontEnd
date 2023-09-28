@@ -43,10 +43,10 @@ export default function App() {
 
 function HeaderWrapper() {
   const location = useLocation();
-  const hideHeader = location.pathname === '/Home';
+  const hideHeader = location.pathname === '/Home' || location.pathname === '';
 
   if (hideHeader) {
-    return null; // Hide the header on the /Home route
+    return null; // Hide the header on the /Home route or main route
   }
 
   return <Header />;
