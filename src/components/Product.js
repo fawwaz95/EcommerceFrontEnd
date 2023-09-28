@@ -12,7 +12,6 @@ export default function Product () {
     const dispatch = useDispatch();
 
     const fetchProdId = async () => {
-      console.log(`get the prodId param ${prodId}`);
       try {
           if (prodId) {
             setProductId(prodId);
