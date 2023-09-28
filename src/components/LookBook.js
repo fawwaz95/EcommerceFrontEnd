@@ -25,10 +25,12 @@ const LookBook = () => {
     const changeImg = (id) => {
         const numberOfImgs = imagePaths.length;
         const getImg = document.getElementById("lookbookImg");
-        console.log("whats the img path ");
-        console.log(getImg);
-        const formatImg = getImg.src.split("https://main--paixamour.netlify.app")[1]; //"http://localhost:3000"
+        const formatImg = getImg.src.split("https://paixamour.netlify.app")[1]; //"http://localhost:3000"
+        console.log("formated img");
+        console.log(formatImg);
         const indexOfImg = imagePaths.indexOf(formatImg);
+        console.log("index of img");
+        console.log(indexOfImg);
       
         let newIndex;
       
