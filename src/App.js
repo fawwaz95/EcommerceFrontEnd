@@ -45,6 +45,8 @@ function HeaderWrapper() {
   const location = useLocation();
   const hideHeader = location.pathname === '/Home' || location.pathname === '';
 
+  console.log("are we going to hide header?");
+
   if (hideHeader) {
     return null; // Hide the header on the /Home route or main route
   }
