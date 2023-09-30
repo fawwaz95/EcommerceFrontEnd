@@ -121,9 +121,10 @@ a:hover{
 /*============ Product Grid ============ */
 .prodItemGrid {
   display: grid;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
+  width: 300px;
   transform: translate(-50%, -50%);
   margin-top: 50px;
   padding-bottom:50px;
@@ -256,8 +257,8 @@ a:hover{
 
 /* First Row */
 .image-mobile {
-  grid-column: 1 / span 1; /* Span one column */
-  grid-row: 1 / span 2;
+  grid-column: 1 / span 1; /* Span One column */
+  grid-row: 1 / span 2; /* Span Two rows */
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -268,7 +269,7 @@ a:hover{
   display: flex;
   justify-content: left;
   align-items: center;
-  grid-column: 2; /* First column */
+  grid-column: 2; /* Second column */
   grid-row: 1; /* First row */
 }
 
