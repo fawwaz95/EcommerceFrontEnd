@@ -75,7 +75,7 @@ export default function Cart() {
                     <div>
                     </div>
                 </div> :
-                <div> Welcome to mobile view
+                <div>
                     <div className="cart">
                         <div className="header">Cart</div>
                         <div className="availableNowTitle">AVAILABLE NOW</div>
