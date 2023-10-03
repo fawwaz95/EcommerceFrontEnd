@@ -34,7 +34,7 @@ export default function Shop(){
                  <div className="bg-white h-full w-full text-black">
                     <div className="scrollable">
                             <div id="productList" className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-10 text-sm align-content-start">
-                            {!isLoading ?
+                            {!isLoading && shopInfo?
                                 shopInfo.map((items) => {
                                     return(
                                         <ShopItem items={items} />
