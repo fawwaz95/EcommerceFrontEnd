@@ -5,11 +5,13 @@ import FetchingData from './FetchingData';
 export default function Shop(){
     const PORT = process.env.PORT || 3001;
     const itemEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Shop`: `http://localhost:${PORT}/ecommerce/Shop`;
+    let [isMounted, setIsMounted] = useState(false);
     let [shopInfo, setShop] = useState();
     let [isLoading, setIsLoading] = useState(true);
 
     const fetchShop = async () => {
         try{
+            console.log("Fetching Shop......");
             const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/Shop`
             const jsonData = response.ok? await response.json() : new Error('Error fetching Shop endpoint');
             setShop(jsonData);
@@ -22,8 +24,13 @@ export default function Shop(){
         setTimeout(() => {
             setIsLoading(false);
         }, 1500);
-        fetchShop();
+
+        setIsMounted(true);
     }, []);
+
+    if(setIsMounted){
+        fetchShop();
+    }
 
         return(
                  <div className="bg-white h-full w-full text-black">
