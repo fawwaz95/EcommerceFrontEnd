@@ -25,13 +25,9 @@ export default function Shop(){
             setIsLoading(false);
         }, 1500);
 
-        setIsMounted(true);
-    }, []);
-
-    if(setIsMounted){
         fetchShop();
-    }
-
+    }, []);
+    
         return(
                  <div className="bg-white h-full w-full text-black">
                     <div className="scrollable">
