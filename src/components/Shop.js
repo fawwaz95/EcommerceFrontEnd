@@ -15,6 +15,8 @@ export default function Shop(){
             const response = await fetch(itemEndPoint); //`http://localhost:3001/ecommerce/Shop`
             const jsonData = response.ok? await response.json() : new Error('Error fetching Shop endpoint');
             setShop(jsonData);
+            console.log("Check setShop hook");
+            console.log(jsonData);
         }catch(error){
             console.error('Error fetching product with ID:', error.message);
         }
@@ -27,7 +29,7 @@ export default function Shop(){
 
         fetchShop();
     }, []);
-    
+
         return(
                  <div className="bg-white h-full w-full text-black">
                     <div className="scrollable">
