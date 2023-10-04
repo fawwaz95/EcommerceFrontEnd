@@ -36,18 +36,36 @@ export default function Product () {
 
     return (
         <div>
-            <div className="scrollProd -z-10">
+            <div className="-z-10">
               {_id &&
                 <div id={_id} className="prodItemGrid">
-                    <img id="prodImg" src={src} className="prodImg" alt="product image"/>
-                    <div id="prodInfo" className="desc vintageFont text-xs">{item}</div>
-                    <div id="prodPrice" className="price vintageFont text-xs">{price}</div>
-                    <a href="#" className="button text-sm slide-animation" onClick={() => {
-                        dispatch(addItemToCart({
-                            _id, src, item, price
-                        }))}}>
-                        <span>Add to bag</span>
-                    </a>
+                    <div className="prodDetailsContainer">
+                        <div className="descAndPriceContainer">
+                            <div className="desc">{item} {price}</div>
+                            <div className="details pb-2 pt-2"> Product details and sizing</div>
+                            <div className="details pb-2 pt-2"> Delivery and returns</div>
+                        </div>
+                    </div>
+                    <img id="prodImg" src={src} className="prodImg" alt="product image" />
+                    <div className="buttonContainer">
+                        <div> 
+                            blah blah blah blah blah blahblah blah blahblah blah blahblah blah blahblah blah blahblah blah blah
+                        </div>
+                        <a href="#" className="button text-sm slide-animation"
+                            onClick={() => {
+                                dispatch(
+                                addItemToCart({
+                                    _id,
+                                    src,
+                                    item,
+                                    price,
+                                })
+                                );
+                            }}
+                            >
+                            <span>Add to bag</span>
+                        </a>
+                    </div>
                 </div>
               }
             </div>
