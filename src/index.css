@@ -133,27 +133,42 @@ a:hover{
   align-items: start;
   justify-content: center;
   height: 100%;
-  font-size: 15px;
   font-family: 'Cormorant Garamond', serif;
+  margin-right: 100px;
 }
 
 .desc {
+  font-size: 20px;
   padding-right: 5px;
 }
 
-.details {
+.generalDetails {
   text-align: left;
+  font-size: 12px;
   width: 300px;
   border-bottom: 1px solid black; /* Adjust the border style as needed */
 } 
 
-.buttonContainer{
+.generalDetailsList > li{
+  margin: 0px;
+  text-indent: 10px;
+  font-size: 12px;
+}
+
+.prodDetailsContainer{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
+  text-align: left;
   height: 100%;
-  padding:50px;
+  font-size: 12px;
+  margin-left: 100px;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.prodDetailsContainer > a{
+  margin-top: 10px;
 }
 
 .button {
@@ -368,33 +383,33 @@ a:hover{
     grid-template-columns: 1fr;
     padding:20px;
   }
+  .descAndPriceContainer{
+    margin:0px;
+  }
   .prodImg{
     grid-column: 1;
+    grid-row: 1;
   }
-  .prodDetailsContainer{
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .descAndPrice{
-    display: flex;
-    font-family: 'Cormorant Garamond', serif;
-    padding:10px;
-  }
-  .desc{
-    margin-right: auto;
-    font-size:18px;
-  }
-
-  .price{
-    font-size:18px;
-  }
-
-  .button{
+  .generalDetails{
     width: 100%;
   }
-  .button > span {
-    font-size: 8px;
+
+  .prodDetailsContainer{
+    margin:0px;
+    margin-top:10px;
   }
+
+  .button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    cursor: pointer;
+    height:40px;
+    width: 100%;
+  }
+
 }
 
 /*For larger screens*/

@@ -9,7 +9,17 @@ export default function Product () {
     const productEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/ProductID/${prodId}` : `http://localhost:${PORT}/ecommerce/ProductID/${prodId}`;
     const [productInfo, setProductInfo] = useState({});
     const [productId, setProductId] = useState(null);
+    const [showProdDetails, setShowProdDetails] = useState(false);
+    const [showDeliveryDetails, setShowDeliveryDetails] = useState(false);
     const dispatch = useDispatch();
+
+    const toggleDeliveryDetails = () => {
+        setShowDeliveryDetails(current => !current);
+    }
+
+    const toggleProdDetails = () => {
+        setShowProdDetails(current => !current);
+    }
 
     const fetchProdId = async () => {
       try {
@@ -39,17 +49,31 @@ export default function Product () {
             <div className="-z-10">
               {_id &&
                 <div id={_id} className="prodItemGrid">
-                    <div className="prodDetailsContainer">
-                        <div className="descAndPriceContainer">
+                    <div className="descAndPriceContainer">
                             <div className="desc">{item} {price}</div>
-                            <div className="details pb-2 pt-2"> Product details and sizing</div>
-                            <div className="details pb-2 pt-2"> Delivery and returns</div>
-                        </div>
-                    </div>
+                            <div className="generalDetails pb-2 pt-2" onClick={() => toggleProdDetails()}> Product details and sizing</div>
+                            {showProdDetails && 
+                                <ul className="generalDetailsList">
+                                    <li>True to size</li>
+                                    <li>Made in Italy</li>
+                                    <li>Handmade craftsmenship</li>
+                                </ul>
+                            }
+  
+                            <div className="generalDetails pb-2 pt-2" onClick={() => toggleDeliveryDetails()}> Delivery and returns</div>
+                            {showDeliveryDetails && 
+                                <ul className="generalDetailsList">
+                                    <li>30 days from delivery date for all returns</li>
+                                    <li>Returns must be in original packaging</li>
+                                    <li>Full refunds or credit is available for all items </li>
+                                </ul>
+                            }
+                     </div>
                     <img id="prodImg" src={src} className="prodImg" alt="product image" />
-                    <div className="buttonContainer">
+                    <div className="prodDetailsContainer">
                         <div> 
-                            blah blah blah blah blah blahblah blah blahblah blah blahblah blah blahblah blah blahblah blah blah
+                            Product is one of kind fire. You wear this an instantly feel like drizzy drake. Ill add more to this once i update my cluster shop within Mongodo.
+                            For now fill this with nonsense to see how it fills up on the page.
                         </div>
                         <a href="#" className="button text-sm slide-animation"
                             onClick={() => {
