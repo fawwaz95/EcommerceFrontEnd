@@ -72,8 +72,8 @@ export default function Product () {
                     <img id="prodImg" src={src} className="prodImg" alt="product image" />
                     <div className="prodDetailsContainer">
                         <div> 
-                            Product is one of kind fire. You wear this an instantly feel like a boss. Ill add more to this once i update my cluster shop within Mongodo.
-                            For now fill this with nonsense to see how it fills up on the page.
+                            Bring out your inner fashion with this amazing piece. Ill add more to this once i update my cluster within Mongodo.
+                            For now fill this up with some temp content, to see how it fills up on the page.
                         </div>
                         <a href="#" className="button text-sm slide-animation"
                             onClick={() => {

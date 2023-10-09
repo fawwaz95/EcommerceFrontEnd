@@ -127,6 +127,10 @@ a:hover{
   padding:30px;
 }
 
+.prodImg{
+  height: auto;
+}
+
 .descAndPriceContainer {
   display: flex;
   flex-direction: column;
@@ -134,7 +138,7 @@ a:hover{
   justify-content: center;
   height: 100%;
   font-family: 'Cormorant Garamond', serif;
-  margin-right: 100px;
+  margin-right:100px;
 }
 
 .desc {
@@ -167,6 +171,7 @@ a:hover{
   font-family: 'Cormorant Garamond', serif;
 }
 
+
 .prodDetailsContainer > a{
   margin-top: 10px;
 }
@@ -188,7 +193,7 @@ a:hover{
   place-content: center;
   color: white;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 8px;
 }
 
 
@@ -415,7 +420,9 @@ a:hover{
 /*For larger screens*/
 @media only screen and (min-width: 1500px) {
   .prodImg{
-    height: 600px;
+    height: 750px; 
+    margin: 0px auto; 
+    display: block;
   }
 }
 
