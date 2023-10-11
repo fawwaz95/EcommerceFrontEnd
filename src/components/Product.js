@@ -42,7 +42,7 @@ export default function Product () {
         fetchProdId();
     }, [prodId]);
 
-    const { _id, item, src, price } = productInfo;
+    const { _id, item, src, price, desc } = productInfo;
 
     return (
         <div>
@@ -72,8 +72,7 @@ export default function Product () {
                     <img id="prodImg" src={src} className="prodImg" alt="product image" />
                     <div className="prodDetailsContainer">
                         <div> 
-                            Bring out your inner fashion with this amazing piece. Ill add more to this once i update my cluster within Mongodo.
-                            For now fill this up with some temp content, to see how it fills up on the page.
+                           {desc}
                         </div>
                         <a href="#" className="button text-sm slide-animation"
                             onClick={() => {
