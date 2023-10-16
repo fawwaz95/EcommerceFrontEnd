@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 export default function Cart() {
+    const PORT = process.env.PORT || 3001;
+    const checkoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
     const [isMobileView, setIsMobileView] = useState(false);
+    const [stripeCheckout, setStripeCheckout] = useState();
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
 
@@ -25,6 +28,26 @@ export default function Cart() {
         const isMobile = viewportWidth < 768;
         setIsMobileView(isMobile);
     };
+
+    const checkoutOrder = async () => {
+        const checkoutObj = {
+            items: [
+                ...cart
+            ]
+        }
+        setStripeCheckout(checkoutObj);
+        console.log("Clicked checkout button.....");
+        console.log(stripeCheckout);
+        /*fetch(checkoutEndPoint , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({})
+        })*/
+    }
+
+ 
 
     useEffect(() => {
         window.addEventListener('resize', checkIsMobileView);
@@ -47,7 +70,7 @@ export default function Cart() {
                         <div className="item columnTitle">PRICE</div>
                         <div className="item columnTitle">TOTAL</div>
                         <div className="item"></div>
-                        {cart?.map((cartItem) => (
+                        {cart?.map((cartItem) => (                           
                             <React.Fragment key={cartItem._id}>
                                 <Link to={`/Product/${cartItem._id}`}>
                                     <div className="prodInfoContainer">
@@ -71,6 +94,9 @@ export default function Cart() {
                                 </div>
                             </React.Fragment>
                         ))}
+                    </div>
+                    <div>
+                        <button className="bg-slate-200 p-2" type="submit" onClick={() => checkoutOrder()}> Checkout </button>
                     </div>
                     <div>
                     </div>
