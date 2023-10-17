@@ -38,13 +38,16 @@ export default function Cart() {
         setStripeCheckout(checkoutObj);
         console.log("Clicked checkout button.....");
         console.log(stripeCheckout);
-        /*fetch(checkoutEndPoint , {
+        const response = await fetch(checkoutEndPoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({})
-        })*/
+            body: JSON.stringify({stripeCheckout})
+        });
+
+        const jsonData = response.ok? response.json() : new Error ("Error fetching checkoutEndPoint");
+
     }
 
  
