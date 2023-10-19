@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 export default function Cart() {
     const PORT = process.env.PORT || 3001;
-    const checkoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
+    const stripeCheckoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
     const [isMobileView, setIsMobileView] = useState(false);
     const [stripeCheckout, setStripeCheckout] = useState();
     const cart = useSelector((state) => state.cart.cart);
@@ -30,20 +30,19 @@ export default function Cart() {
     };
 
     const checkoutOrder = async () => {
-        const checkoutObj = {
-            items: [
+        const items = {
+            line_items: [
                 ...cart
             ]
         }
-        setStripeCheckout(checkoutObj);
-        console.log("Clicked checkout button.....");
-        console.log(stripeCheckout);
-        const response = await fetch(checkoutEndPoint, {
+        //setStripeCheckout(checkoutObj);
+
+        const response = await fetch(stripeCheckoutEndPoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({stripeCheckout})
+            body: JSON.stringify({items})
         });
 
         const jsonData = response.ok? response.json() : new Error ("Error fetching checkoutEndPoint");
