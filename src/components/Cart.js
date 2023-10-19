@@ -45,11 +45,11 @@ export default function Cart() {
             body: JSON.stringify({items})
         });
 
-        const jsonData = response.ok? response.json() : new Error ("Error fetching checkoutEndPoint");
+        const jsonData = response.ok? await response.json() : new Error ("Error fetching checkoutEndPoint");
         console.log(jsonData);
 
-      //  const history = useHistory();
-      //  history.push(jsonData.sessionUrl);
+        const history = useHistory();
+        history.push(jsonData.sessionUrl);
     }
 
  
