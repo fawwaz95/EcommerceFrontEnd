@@ -7,9 +7,9 @@ export default function Cart() {
     const PORT = process.env.PORT || 3001;
     const stripeCheckoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
     const [isMobileView, setIsMobileView] = useState(false);
-    const [stripeCheckout, setStripeCheckout] = useState();
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
+    const navigate = useNavigate ();
 
     const getTotal = (prodId) => {
         const findItem = cart.find((item) => {
@@ -35,7 +35,6 @@ export default function Cart() {
                 ...cart
             ]
         }
-        //setStripeCheckout(checkoutObj);
 
         const response = await fetch(stripeCheckoutEndPoint, {
             method: "POST",
@@ -48,7 +47,6 @@ export default function Cart() {
         const jsonData = response.ok? await response.json() : new Error ("Error fetching checkoutEndPoint");
         console.log(jsonData);
 
-        const navigate = useNavigate ();
         navigate.push(jsonData.sessionUrl);
     }
 
