@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { incrementQuantity, decrementQuantity, removeItemFromCart } from '../redux/actions/cartActions';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 export default function Cart() {
     const PORT = process.env.PORT || 3001;
@@ -46,7 +46,10 @@ export default function Cart() {
         });
 
         const jsonData = response.ok? response.json() : new Error ("Error fetching checkoutEndPoint");
+        console.log(jsonData);
 
+      //  const history = useHistory();
+      //  history.push(jsonData.sessionUrl);
     }
 
  
