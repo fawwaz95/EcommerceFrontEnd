@@ -47,7 +47,7 @@ export default function Cart() {
         const jsonData = response.ok? await response.json() : new Error ("Error fetching checkoutEndPoint");
         console.log(jsonData);
 
-        navigate.push(jsonData.sessionUrl);
+        navigate(jsonData.sessionUrl);
     }
 
  
