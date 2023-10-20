@@ -44,7 +44,7 @@ export default function Cart() {
             body: JSON.stringify({items})
         });
 
-        const {sessionUrl} = response.ok? await response.json() : new Error ("Error fetching stripeCheckoutEndPoint");
+        const {sessionUrl} = response.ok? await response.json() : new Error (`Error fetching ${stripeCheckoutEndPoint}`);
 
         navigate(sessionUrl, {replace: true});
     }
