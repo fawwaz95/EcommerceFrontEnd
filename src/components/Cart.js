@@ -6,6 +6,7 @@ import {Link, useNavigate } from 'react-router-dom';
 export default function Cart() {
     const PORT = process.env.PORT || 3001;
     const stripeCheckoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
+    const stripeGetAllProdsEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetAllProds`: `http://localhost:${PORT}/ecommerce/stripeGetAllProds`;
     const [isMobileView, setIsMobileView] = useState(false);
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
@@ -29,25 +30,35 @@ export default function Cart() {
         setIsMobileView(isMobile);
     };
 
-    const checkoutOrder = async () => {
-        const items = {
-            line_items: [
-                ...cart
-            ]
-        }
+    const getPriceIDsFromStripe = async () => {
+        const response = await fetch(stripeGetAllProdsEndPoint);
+        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetAllProdsEndPoint");
+        const priceIds = jsonData.map(items => {
+            return items.default_price;
+        })
+        return priceIds;
+    }
 
+    const getCheckoutUrlFromStripe = async (priceIdsArray) => {
         const response = await fetch(stripeCheckoutEndPoint, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({items})
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ priceIdsArray }),
         });
 
-        const {sessionUrl} = response.ok? await response.json() : new Error (`Error fetching ${stripeCheckoutEndPoint}`);
+        const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckoutEndPoint");
 
-        navigate(sessionUrl, {replace: true});
-    }
+        return sessionUrl;
+      };
+      
+      const checkoutOrder = async () => {
+        const priceIdArray = await getPriceIDsFromStripe();
+        const getSessionUrl = await getCheckoutUrlFromStripe(priceIdArray);
+
+        window.location.replace(getSessionUrl);
+      }
 
  
 
