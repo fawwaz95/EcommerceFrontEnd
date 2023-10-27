@@ -32,17 +32,6 @@ export default function Cart() {
         setIsMobileView(isMobile);
     };
 
-    const getPriceIDsFromStripe = async () => {
-        const response = await fetch(stripeGetAllProdsEndPoint);
-        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetAllProdsEndPoint");
-        console.log("ALl prods");
-        console.log(jsonData);
-        const priceIds = jsonData.map(items => {
-            return items.default_price;
-        })
-        return priceIds;
-    }
-
     const getCheckoutUrlFromStripe = async (prodArray) => {
         const response = await fetch(stripeCheckoutEndPoint, {
           method: "POST",
