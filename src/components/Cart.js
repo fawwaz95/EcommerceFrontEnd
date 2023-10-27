@@ -7,6 +7,8 @@ export default function Cart() {
     const PORT = process.env.PORT || 3001;
     const stripeCheckoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
     const stripeGetAllProdsEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetAllProds`: `http://localhost:${PORT}/ecommerce/stripeGetAllProds`;
+    const stripeGetProdsEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetProds`: `http://localhost:${PORT}/ecommerce/stripeGetProds`;
+
     const [isMobileView, setIsMobileView] = useState(false);
     const cart = useSelector((state) => state.cart.cart);
     const dispatch = useDispatch();
@@ -33,30 +35,47 @@ export default function Cart() {
     const getPriceIDsFromStripe = async () => {
         const response = await fetch(stripeGetAllProdsEndPoint);
         const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetAllProdsEndPoint");
+        console.log("ALl prods");
+        console.log(jsonData);
         const priceIds = jsonData.map(items => {
             return items.default_price;
         })
         return priceIds;
     }
 
-    const getCheckoutUrlFromStripe = async (priceIdsArray) => {
+    const getCheckoutUrlFromStripe = async (prodArray) => {
         const response = await fetch(stripeCheckoutEndPoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ priceIdsArray }),
+          body: JSON.stringify({prodArray}),
         });
 
         const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckoutEndPoint");
 
         return sessionUrl;
       };
+
+      const getProductsFromStripe = async (cart) => {
+        const response = await fetch(stripeGetProdsEndPoint, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({cart}),
+        });
+        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetProdsEndPoint");
+        console.log("The products with priceid, prodName, qty");
+        console.log(jsonData);
+
+        return jsonData;
+      }
       
       const checkoutOrder = async () => {
-        const priceIdArray = await getPriceIDsFromStripe();
-        const getSessionUrl = await getCheckoutUrlFromStripe(priceIdArray);
-
+        const cartItems = cart;
+        const productsFromStripe = await getProductsFromStripe(cart);
+        const getSessionUrl = await getCheckoutUrlFromStripe(productsFromStripe);
         window.location.replace(getSessionUrl);
       }
 
