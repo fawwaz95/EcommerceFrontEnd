@@ -143,6 +143,9 @@ export default function Cart() {
                                     </div>
                                 </React.Fragment>
                             ))}
+                        <div>
+                            <button className="bg-slate-200 p-2" type="submit" onClick={() => checkoutOrder()}> Checkout </button>
+                        </div>
                     </div>
                 </div>
             }
