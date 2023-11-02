@@ -64,8 +64,10 @@ export default function Cart() {
       const checkoutOrder = async () => {
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
-        const getSessionUrl = await getCheckoutUrlFromStripe(productsFromStripe);
-       // window.location.replace(getSessionUrl);
+        const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
+        console.log("Checking session object");
+        console.log(session);
+        window.location.replace(getSession.sessionUrl);
       }
 
  
