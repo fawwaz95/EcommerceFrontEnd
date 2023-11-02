@@ -65,7 +65,7 @@ export default function Cart() {
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
         const getSessionUrl = await getCheckoutUrlFromStripe(productsFromStripe);
-        window.location.replace(getSessionUrl);
+       // window.location.replace(getSessionUrl);
       }
 
  
