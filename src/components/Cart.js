@@ -66,7 +66,7 @@ export default function Cart() {
         const productsFromStripe = await getProductsFromStripe(cart);
         const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
         console.log("Checking session object");
-        console.log(session);
+        console.log(getSession);
         window.location.replace(getSession.url);
       }
 
