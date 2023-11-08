@@ -82,9 +82,10 @@ export default function Cart() {
         console.log(getSession);
         window.location.replace(getSession.session_url);
         const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
+        const retrieveSession = getOrderSuccess.ok ? await getOrderSuccess.json() : new Error ("Unale to retriev session");
 
         console.log("Got session info from front end");
-        console.log(getOrderSuccess);
+        console.log(retrieveSession);
       }
 
 
