@@ -5,9 +5,6 @@ import {Link, useNavigate } from 'react-router-dom';
 
 export default function Cart() {
     const PORT = process.env.PORT || 3001;
-    const stripeCheckoutEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: `http://localhost:${PORT}/ecommerce/Checkout`;
-    const stripeGetAllProdsEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetAllProds`: `http://localhost:${PORT}/ecommerce/stripeGetAllProds`;
-    const stripeGetProdsEndPoint = process.env.REACT_APP_BACKENDSERVER ? `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetProds`: `http://localhost:${PORT}/ecommerce/stripeGetProds`;
 
     const [isMobileView, setIsMobileView] = useState(false);
     const cart = useSelector((state) => state.cart.cart);
@@ -33,7 +30,11 @@ export default function Cart() {
     };
 
     const getCheckoutUrlFromStripe = async (prodArray) => {
-        const response = await fetch(stripeCheckoutEndPoint, {
+        const stripeCheckout = process.env.REACT_APP_BACKENDSERVER ? 
+                                `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: 
+                                `http://localhost:${PORT}/ecommerce/Checkout`;
+
+        const response = await fetch(stripeCheckout, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -41,20 +42,24 @@ export default function Cart() {
           body: JSON.stringify({prodArray}),
         });
 
-        const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckoutEndPoint");
+        const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
 
         return sessionUrl;
       };
 
       const getProductsFromStripe = async (cart) => {
-        const response = await fetch(stripeGetProdsEndPoint, {
+        const stripeGetProds = process.env.REACT_APP_BACKENDSERVER ? 
+                                `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/stripeGetProds`: 
+                                `http://localhost:${PORT}/ecommerce/stripeGetProds`;
+
+        const response = await fetch(stripeGetProds, {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
             },
             body: JSON.stringify({cart}),
         });
-        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetProdsEndPoint");
+        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetProds");
         console.log("The products with priceid, prodName, qty");
         console.log(jsonData);
 
@@ -62,12 +67,16 @@ export default function Cart() {
       }
       
       const checkoutOrder = async () => {
+        const stripeSessionStatus = process.env.REACT_APP_BACKENDSERVER ? 
+                                    `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/session_status`: 
+                                    `http://localhost:${PORT}/ecommerce/session_status`;
+
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
         const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
-        console.log("Session obj");
-        console.log(getSession);
-        //window.location.replace(getSession.url);
+        window.location.replace(getSession.session_url);
+
+        const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
       }
 
 
