@@ -64,18 +64,10 @@ export default function Cart() {
       const checkoutOrder = async () => {
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
-        const getSessionUrl = await getCheckoutUrlFromStripe(productsFromStripe);
-        window.location.replace(getSessionUrl);
-
-        const session = await fetch(`/session_status?session_id=${session_id}`)
-        if (session.status == 'open') {
-            console.log("Session is still open....");
-        } else if (session.status == 'complete') {
-            console.log("Session is complete...");
-            console.log("Thank you ! " + session.payment_status);
-            console.log("Email..." + session.customer_email);
-        // Show success page
-        }
+        const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
+        console.log("Session obj");
+        console.log(getSession);
+        window.location.replace(getSession.url);
       }
 
 
