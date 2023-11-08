@@ -76,7 +76,7 @@ export default function Cart() {
         const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
         window.location.replace(getSession.session_url);
 
-        const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
+       // const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
       }
 
 
