@@ -44,6 +44,9 @@ export default function Cart() {
 
         const {session} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
 
+        console.log("What is the session here ");
+        console.log(session);
+
         return session;
       };
 
@@ -76,9 +79,8 @@ export default function Cart() {
         const getSession = await getCheckoutSessionFromStripe(productsFromStripe);
 
         console.log("getSession");
-        console.log(getSession.session);
-        window.location.replace(getSession.session.session_url);
-
+        console.log(getSession);
+        window.location.replace(getSession.session_url);
        // const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
       }
 
