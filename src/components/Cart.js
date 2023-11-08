@@ -81,7 +81,10 @@ export default function Cart() {
         console.log("getSession");
         console.log(getSession);
         window.location.replace(getSession.session_url);
-       // const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
+        const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
+
+        console.log("Got session info from front end");
+        console.log(getOrderSuccess);
       }
 
 
