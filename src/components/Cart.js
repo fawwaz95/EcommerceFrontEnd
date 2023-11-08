@@ -29,7 +29,7 @@ export default function Cart() {
         setIsMobileView(isMobile);
     };
 
-    const getCheckoutUrlFromStripe = async (prodArray) => {
+    const getCheckoutSessionFromStripe = async (prodArray) => {
         const stripeCheckout = process.env.REACT_APP_BACKENDSERVER ? 
                                 `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: 
                                 `http://localhost:${PORT}/ecommerce/Checkout`;
@@ -42,9 +42,9 @@ export default function Cart() {
           body: JSON.stringify({prodArray}),
         });
 
-        const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
+        const {session} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
 
-        return sessionUrl;
+        return session;
       };
 
       const getProductsFromStripe = async (cart) => {
@@ -73,7 +73,7 @@ export default function Cart() {
 
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
-        const getSession = await getCheckoutUrlFromStripe(productsFromStripe);
+        const getSession = await getCheckoutSessionFromStripe(productsFromStripe);
         window.location.replace(getSession.session_url);
 
        // const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
