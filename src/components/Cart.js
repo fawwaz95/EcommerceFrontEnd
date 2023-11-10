@@ -29,7 +29,7 @@ export default function Cart() {
         setIsMobileView(isMobile);
     };
 
-    const getCheckoutSessionFromStripe = async (prodArray) => {
+    const getSessionUrlFromStripe = async (prodArray) => {
         const stripeCheckout = process.env.REACT_APP_BACKENDSERVER ? 
                                 `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/Checkout`: 
                                 `http://localhost:${PORT}/ecommerce/Checkout`;
@@ -42,12 +42,12 @@ export default function Cart() {
           body: JSON.stringify({prodArray}),
         });
 
-        const {session} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
+        const {sessionUrl} = response.ok ? await response.json() : new Error("Failed to fetch session URL from stripeCheckout");
 
-        console.log("What is the session here ");
-        console.log(session);
+        console.log("What is the sessionUrl: ");
+        console.log(sessionUrl);
 
-        return session;
+        return sessionUrl;
       };
 
       const getProductsFromStripe = async (cart) => {
@@ -62,30 +62,18 @@ export default function Cart() {
             },
             body: JSON.stringify({cart}),
         });
-        const jsonData =  response.ok ? await response.json() : new Error ("Cant stripeGetProds");
+        const stripeProducts = response.ok ? await response.json() : new Error ("Cant get stripeGetProds");
         console.log("The products with priceid, prodName, qty");
-        console.log(jsonData);
+        console.log(stripeProducts);
 
-        return jsonData;
+        return stripeProducts;
       }
       
       const checkoutOrder = async () => {
-        const stripeSessionStatus = process.env.REACT_APP_BACKENDSERVER ? 
-                                    `${process.env.REACT_APP_BACKENDSERVER}/ecommerce/session_status`: 
-                                    `http://localhost:${PORT}/ecommerce/session_status`;
-
         const cartItems = cart;
         const productsFromStripe = await getProductsFromStripe(cart);
-        const getSession = await getCheckoutSessionFromStripe(productsFromStripe);
-
-        console.log("getSession");
-        console.log(getSession);
-        window.location.replace(getSession.session_url);
-        const getOrderSuccess = await fetch(stripeSessionStatus+`?session_id=${getSession.session_id}`);
-        const retrieveSession = getOrderSuccess.ok ? await getOrderSuccess.json() : new Error ("Unale to retriev session");
-
-        console.log("Got session info from front end");
-        console.log(retrieveSession);
+        const sessionUrl = await getSessionUrlFromStripe(productsFromStripe);
+        window.location.replace(sessionUrl);
       }
 
 
