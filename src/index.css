@@ -128,8 +128,8 @@ a:hover{
 }
 
 .prodImg{
-  width:450px;
   height:450px;
+  width:auto;
 }
 
 .descAndPriceContainer {
@@ -428,7 +428,6 @@ a:hover{
 @media only screen and (min-width: 1500px) {
   .prodImg{
     height: 750px; 
-    width: auto;
     margin: 0px auto; 
     display: block;
   }
