@@ -382,6 +382,12 @@ a:hover{
 
 
 /* For mobile views @media (max-width: 640px)*/
+@media (max-width: 640px) {
+  .prodImg{
+    width:auto;
+    height: auto;
+  }
+}
 /* For Product.js Component */
 @media (max-width: 840px) {
   .prodItemGrid {
