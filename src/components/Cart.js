@@ -85,8 +85,8 @@ export default function Cart() {
         };
     }, []);
 
-    console.log('The cart');
-    console.log(cart);
+    //console.log('The cart');
+    //console.log(cart);
     return (
         <div>
             {!isMobileView ?
