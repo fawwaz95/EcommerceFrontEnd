@@ -128,8 +128,8 @@ a:hover{
 }
 
 .prodImg{
-  height:450px;
-  width:auto;
+  height: 450px;
+  width: 100%;
 }
 
 .descAndPriceContainer {
