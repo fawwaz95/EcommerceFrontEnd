@@ -70,7 +70,7 @@ const LookBook = () => {
                     </a>
                 </div>
                 <div className="relative flex items-center h-full">
-                        <div id="leftArrow" className="w-1/4 flex justify-start ml-4" onClick={() => changeImg("leftArrow")}>  {/*Need to fix the alignment of my left arrow.....*/}
+                        <div id="leftArrow" className="w-1/4 flex justify-start ml-4" onClick={() => changeImg("leftArrow")}>
                             <a href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" >
                                     <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z"/>
